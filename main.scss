@@ -25,8 +25,8 @@ body {
 }
 
 .elephant, .saara-hard, .lion {
-    display: flex;
-    // grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin-left: 120px;
     margin-right: 32px;
     height: 100vh;
@@ -70,6 +70,7 @@ body {
 
     .subtitle {
         font-size: 1.2em;
+        white-space: nowrap;
         color: $white;
         font-weight: bold;
     }
@@ -79,7 +80,7 @@ body {
         font-weight: normal;
         letter-spacing: 0.3px;
         max-width: 82%;
-        min-width: 400px;
+        // min-width: 80vw;
         max-width: 850px;
     }
 }
@@ -91,6 +92,7 @@ body {
         margin-right: -16em;
         max-height: 60vh;
         margin-left: 24px;
+        grid-column: 3;
     }
 
     .elephant-image {
@@ -98,6 +100,7 @@ body {
         max-height: 60vh;
         user-select: none;
         -webkit-user-drag: none;
+        grid-column: 3;
     }
 
     @media screen and (min-width: 1200px) {
@@ -117,23 +120,35 @@ body {
 }
 
 @media screen and (max-width: 900px) {
+    
+    body {
+        overflow-x: hidden;
+        
+    }
 
     .elephant, .saara-hard, .lion {
+        display: flex;
         flex-direction: column-reverse;
         height: fit-content;
         gap: 0;
         align-items: center;
 
+        .elephant-container {
+            .elephant-image {
+                max-width: 100vw;
+            }
+        }
+
         .main-text-container {
             align-items: center;
             margin-bottom: 12em;
-    
-            .main-text {
-                font-size: 4em;
-            }
 
             .help-text {
                 text-align: center;
+            }
+
+            .subtitle {
+                font-size: 1em;
             }
 
             .min-w {
@@ -146,17 +161,30 @@ body {
                 }
             }
 
+            .size-saara {
+                font-size: 3.5em !important;
+            }
+    
+            .size-elephant {
+                font-size: 4em;
+            }
+
+            .size-lion {
+                font-size: 4em;
+            }
+
             .underline-elephant {
                 width: 16em;
             }
 
             .underline-saara-hard {
-                width: 21em;
+                width: 18em;
             }
 
             .underline-lion {
                 width: 10em;
             }
+            
         }
     }
 
@@ -169,11 +197,7 @@ body {
     }
 
     .pattern-side {
-        position: absolute;
-        transform: rotate(90deg);
-        height: 910px;
-        left: 420px;
-        top: -450px;
+        display: none;
     }
 }
 
@@ -253,7 +277,7 @@ body {
 
 @media screen and (max-width: 900px) {
     .navigation {
-        top: 92%;
+        bottom: 48px;
         gap: 4em;
         transform: scale(1.2);
         z-index: 3;

@@ -26,7 +26,8 @@ body {
 }
 
 .elephant, .saara-hard, .lion {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin-left: 120px;
   margin-right: 32px;
   height: 100vh;
@@ -74,6 +75,7 @@ body {
 }
 .elephant .main-text-container .subtitle, .saara-hard .main-text-container .subtitle, .lion .main-text-container .subtitle {
   font-size: 1.2em;
+  white-space: nowrap;
   color: #fff;
   font-weight: bold;
 }
@@ -82,7 +84,6 @@ body {
   font-weight: normal;
   letter-spacing: 0.3px;
   max-width: 82%;
-  min-width: 400px;
   max-width: 850px;
 }
 .elephant .elephant-container, .elephant .saara-hard-container, .elephant .lion-container, .saara-hard .elephant-container, .saara-hard .saara-hard-container, .saara-hard .lion-container, .lion .elephant-container, .lion .saara-hard-container, .lion .lion-container {
@@ -92,6 +93,7 @@ body {
   margin-right: -16em;
   max-height: 60vh;
   margin-left: 24px;
+  grid-column: 3;
 }
 .elephant .elephant-container .elephant-image, .elephant .saara-hard-container .elephant-image, .elephant .lion-container .elephant-image, .saara-hard .elephant-container .elephant-image, .saara-hard .saara-hard-container .elephant-image, .saara-hard .lion-container .elephant-image, .lion .elephant-container .elephant-image, .lion .saara-hard-container .elephant-image, .lion .lion-container .elephant-image {
   margin-right: 0em;
@@ -101,6 +103,7 @@ body {
       -ms-user-select: none;
           user-select: none;
   -webkit-user-drag: none;
+  grid-column: 3;
 }
 @media screen and (min-width: 1200px) {
   .elephant .elephant-container .elephant-image, .elephant .saara-hard-container .elephant-image, .elephant .lion-container .elephant-image, .saara-hard .elephant-container .elephant-image, .saara-hard .saara-hard-container .elephant-image, .saara-hard .lion-container .elephant-image, .lion .elephant-container .elephant-image, .lion .saara-hard-container .elephant-image, .lion .lion-container .elephant-image {
@@ -115,7 +118,11 @@ body {
 }
 
 @media screen and (max-width: 900px) {
+  body {
+    overflow-x: hidden;
+  }
   .elephant, .saara-hard, .lion {
+    display: flex;
     flex-direction: column-reverse;
     height: -webkit-fit-content;
     height: -moz-fit-content;
@@ -123,15 +130,18 @@ body {
     gap: 0;
     align-items: center;
   }
+  .elephant .elephant-container .elephant-image, .saara-hard .elephant-container .elephant-image, .lion .elephant-container .elephant-image {
+    max-width: 100vw;
+  }
   .elephant .main-text-container, .saara-hard .main-text-container, .lion .main-text-container {
     align-items: center;
     margin-bottom: 12em;
   }
-  .elephant .main-text-container .main-text, .saara-hard .main-text-container .main-text, .lion .main-text-container .main-text {
-    font-size: 4em;
-  }
   .elephant .main-text-container .help-text, .saara-hard .main-text-container .help-text, .lion .main-text-container .help-text {
     text-align: center;
+  }
+  .elephant .main-text-container .subtitle, .saara-hard .main-text-container .subtitle, .lion .main-text-container .subtitle {
+    font-size: 1em;
   }
   .elephant .main-text-container .min-w, .saara-hard .main-text-container .min-w, .lion .main-text-container .min-w {
     width: 300px;
@@ -143,13 +153,28 @@ body {
   }
 }
 @media screen and (max-width: 900px) {
+  .elephant .main-text-container .size-saara, .saara-hard .main-text-container .size-saara, .lion .main-text-container .size-saara {
+    font-size: 3.5em !important;
+  }
+}
+@media screen and (max-width: 900px) {
+  .elephant .main-text-container .size-elephant, .saara-hard .main-text-container .size-elephant, .lion .main-text-container .size-elephant {
+    font-size: 4em;
+  }
+}
+@media screen and (max-width: 900px) {
+  .elephant .main-text-container .size-lion, .saara-hard .main-text-container .size-lion, .lion .main-text-container .size-lion {
+    font-size: 4em;
+  }
+}
+@media screen and (max-width: 900px) {
   .elephant .main-text-container .underline-elephant, .saara-hard .main-text-container .underline-elephant, .lion .main-text-container .underline-elephant {
     width: 16em;
   }
 }
 @media screen and (max-width: 900px) {
   .elephant .main-text-container .underline-saara-hard, .saara-hard .main-text-container .underline-saara-hard, .lion .main-text-container .underline-saara-hard {
-    width: 21em;
+    width: 18em;
   }
 }
 @media screen and (max-width: 900px) {
@@ -169,11 +194,7 @@ body {
 }
 @media screen and (max-width: 900px) {
   .pattern-side {
-    position: absolute;
-    transform: rotate(90deg);
-    height: 910px;
-    left: 420px;
-    top: -450px;
+    display: none;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -246,7 +267,7 @@ body {
 
 @media screen and (max-width: 900px) {
   .navigation {
-    top: 92%;
+    bottom: 48px;
     gap: 4em;
     transform: scale(1.2);
     z-index: 3;
